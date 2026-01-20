@@ -4,9 +4,6 @@
    EQUESTRIAN CLUB - LUXURY DESIGN SYSTEM
    ======================================== */
 
-/* Custom Fonts - Elegant Serif + Modern Sans */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
-
 /* ========================================
    CSS CUSTOM PROPERTIES - DESIGN TOKENS
    ======================================== */
@@ -14,7 +11,7 @@
   /* =========================
      COLOR PALETTE - Earth Tones & Gold
      ========================= */
-  
+
   /* Primary - Deep Espresso Brown */
   --color-primary-50: #faf8f6;
   --color-primary-100: #f0ebe5;
@@ -27,7 +24,7 @@
   --color-primary-800: #5f4a3d;
   --color-primary-900: #4e3d33;
   --color-primary-950: #2a1f1a;
-  
+
   /* Secondary - Rich Forest Green */
   --color-secondary-50: #f4f9f4;
   --color-secondary-100: #e5f1e6;
@@ -40,7 +37,7 @@
   --color-secondary-800: #2b4c32;
   --color-secondary-900: #243f2b;
   --color-secondary-950: #102214;
-  
+
   /* Accent - Luxurious Gold */
   --color-accent-50: #fdfbf3;
   --color-accent-100: #faf5e1;
@@ -53,7 +50,7 @@
   --color-accent-800: #855b30;
   --color-accent-900: #6d4b2b;
   --color-accent-950: #3d2715;
-  
+
   /* Neutral - Warm Grays */
   --color-neutral-50: #fafaf9;
   --color-neutral-100: #f5f5f4;
@@ -66,7 +63,7 @@
   --color-neutral-800: #292524;
   --color-neutral-900: #1c1917;
   --color-neutral-950: #0c0a09;
-  
+
   /* Cream/Ivory - Premium backgrounds */
   --color-cream-50: #fefdfb;
   --color-cream-100: #fdfbf7;
@@ -74,13 +71,13 @@
   --color-cream-300: #f5ede0;
   --color-cream-400: #ede0cc;
   --color-cream-500: #e2cfb3;
-  
+
   /* =========================
      TYPOGRAPHY
      ========================= */
   --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  
+
   /* Font Sizes - Fluid Typography */
   --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
   --text-sm: clamp(0.875rem, 0.8rem + 0.38vw, 1rem);
@@ -93,7 +90,7 @@
   --text-5xl: clamp(3rem, 2.25rem + 3.75vw, 4rem);
   --text-6xl: clamp(3.75rem, 2.75rem + 5vw, 5rem);
   --text-7xl: clamp(4.5rem, 3.25rem + 6.25vw, 6rem);
-  
+
   /* Line Heights */
   --leading-none: 1;
   --leading-tight: 1.15;
@@ -101,7 +98,7 @@
   --leading-normal: 1.5;
   --leading-relaxed: 1.625;
   --leading-loose: 2;
-  
+
   /* Letter Spacing */
   --tracking-tighter: -0.05em;
   --tracking-tight: -0.025em;
@@ -109,7 +106,7 @@
   --tracking-wide: 0.025em;
   --tracking-wider: 0.05em;
   --tracking-widest: 0.15em;
-  
+
   /* =========================
      SPACING
      ========================= */
@@ -130,7 +127,7 @@
   --space-48: 12rem;
   --space-56: 14rem;
   --space-64: 16rem;
-  
+
   /* =========================
      BORDERS & RADIUS
      ========================= */
@@ -142,7 +139,7 @@
   --radius-2xl: 1rem;
   --radius-3xl: 1.5rem;
   --radius-full: 9999px;
-  
+
   /* =========================
      SHADOWS - Subtle & Elegant
      ========================= */
@@ -154,7 +151,7 @@
   --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
   --shadow-gold: 0 4px 20px -2px rgb(212 168 74 / 0.25);
   --shadow-elegant: 0 4px 30px rgb(0 0 0 / 0.1);
-  
+
   /* =========================
      TRANSITIONS
      ========================= */
@@ -162,7 +159,7 @@
   --transition-normal: 300ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-elegant: 600ms cubic-bezier(0.22, 1, 0.36, 1);
-  
+
   /* =========================
      Z-INDEX SCALE
      ========================= */
@@ -192,7 +189,7 @@
   --color-primary-800: var(--color-primary-800);
   --color-primary-900: var(--color-primary-900);
   --color-primary-950: var(--color-primary-950);
-  
+
   --color-secondary-50: var(--color-secondary-50);
   --color-secondary-100: var(--color-secondary-100);
   --color-secondary-200: var(--color-secondary-200);
@@ -204,7 +201,7 @@
   --color-secondary-800: var(--color-secondary-800);
   --color-secondary-900: var(--color-secondary-900);
   --color-secondary-950: var(--color-secondary-950);
-  
+
   --color-accent-50: var(--color-accent-50);
   --color-accent-100: var(--color-accent-100);
   --color-accent-200: var(--color-accent-200);
@@ -216,18 +213,18 @@
   --color-accent-800: var(--color-accent-800);
   --color-accent-900: var(--color-accent-900);
   --color-accent-950: var(--color-accent-950);
-  
+
   --color-cream-50: var(--color-cream-50);
   --color-cream-100: var(--color-cream-100);
   --color-cream-200: var(--color-cream-200);
   --color-cream-300: var(--color-cream-300);
   --color-cream-400: var(--color-cream-400);
   --color-cream-500: var(--color-cream-500);
-  
+
   /* Font Families */
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
-  
+
   /* Shadows */
   --shadow-gold: var(--shadow-gold);
   --shadow-elegant: var(--shadow-elegant);
@@ -258,7 +255,12 @@ body {
 }
 
 /* Elegant headings with serif font */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-serif);
   font-weight: 500;
   line-height: var(--leading-tight);
@@ -473,6 +475,7 @@ img {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -488,18 +491,17 @@ img {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
 }
 
 .shimmer {
-  background: linear-gradient(
-    90deg,
-    var(--color-cream-200) 0%,
-    var(--color-cream-100) 50%,
-    var(--color-cream-200) 100%
-  );
+  background: linear-gradient(90deg,
+      var(--color-cream-200) 0%,
+      var(--color-cream-100) 50%,
+      var(--color-cream-200) 100%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
