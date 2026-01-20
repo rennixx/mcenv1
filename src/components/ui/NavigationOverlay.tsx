@@ -11,77 +11,6 @@ export interface NavigationOverlayProps {
     links?: typeof NAV_LINKS;
 }
 
-// Animation variants
-const overlayVariants = {
-    hidden: {
-        opacity: 0,
-        transition: {
-            duration: 0.3,
-            ease: [0.22, 1, 0.36, 1],
-        },
-    },
-    visible: {
-        opacity: 1,
-        transition: {
-            duration: 0.4,
-            ease: [0.22, 1, 0.36, 1],
-        },
-    },
-};
-
-const menuVariants = {
-    hidden: {
-        opacity: 0,
-        y: -20,
-        transition: {
-            duration: 0.3,
-            ease: [0.22, 1, 0.36, 1],
-        },
-    },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: {
-            duration: 0.5,
-            ease: [0.22, 1, 0.36, 1],
-            staggerChildren: 0.08,
-            delayChildren: 0.1,
-        },
-    },
-    exit: {
-        opacity: 0,
-        y: -10,
-        transition: {
-            duration: 0.3,
-            ease: [0.22, 1, 0.36, 1],
-        },
-    },
-};
-
-const linkVariants = {
-    hidden: {
-        opacity: 0,
-        y: 20,
-        x: -10,
-    },
-    visible: {
-        opacity: 1,
-        y: 0,
-        x: 0,
-        transition: {
-            duration: 0.5,
-            ease: [0.22, 1, 0.36, 1],
-        },
-    },
-    exit: {
-        opacity: 0,
-        y: -10,
-        transition: {
-            duration: 0.2,
-        },
-    },
-};
-
 export function NavigationOverlay({
     isOpen,
     onClose,
@@ -115,14 +44,14 @@ export function NavigationOverlay({
     return (
         <AnimatePresence>
             {isOpen && (
-                <>
+                <div key="navigation-overlay">
                     {/* Backdrop */}
                     <motion.div
                         className="fixed inset-0 z-40 bg-primary-950/60 backdrop-blur-sm"
-                        variants={overlayVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3, ease: 'easeOut' }}
                         onClick={onClose}
                         aria-hidden="true"
                     />
@@ -137,10 +66,10 @@ export function NavigationOverlay({
                             'border-b border-cream-200/50 dark:border-cream-100/10',
                             'shadow-2xl'
                         )}
-                        variants={menuVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.4, ease: 'easeOut' }}
                         role="dialog"
                         aria-modal="true"
                         aria-label="Main navigation"
@@ -179,15 +108,18 @@ export function NavigationOverlay({
                         </div>
 
                         {/* Navigation links */}
-                        <motion.ul
-                            className="flex flex-col items-center gap-2 px-6 pb-12 lg:pb-8"
-                            variants={menuVariants}
-                        >
+                        <ul className="flex flex-col items-center gap-2 px-6 pb-12 lg:pb-8">
                             {links.map((link, index) => (
                                 <motion.li
                                     key={link.href}
-                                    variants={linkVariants}
                                     className="w-full max-w-md"
+                                    initial={{ opacity: 0, y: 20, x: -10 }}
+                                    animate={{ opacity: 1, y: 0, x: 0 }}
+                                    transition={{
+                                        duration: 0.5,
+                                        delay: 0.1 + index * 0.08,
+                                        ease: 'easeOut',
+                                    }}
                                 >
                                     <a
                                         href={link.href}
@@ -202,7 +134,6 @@ export function NavigationOverlay({
                                             'transition-colors duration-200'
                                         )}
                                         onClick={onClose}
-                                        tabIndex={0}
                                     >
                                         {link.label}
                                     </a>
@@ -213,7 +144,7 @@ export function NavigationOverlay({
                                             className="mt-2 space-y-1"
                                             initial={{ opacity: 0, height: 0 }}
                                             animate={{ opacity: 1, height: 'auto' }}
-                                            transition={{ delay: 0.1 * index, duration: 0.3 }}
+                                            transition={{ delay: 0.1 * index + 0.2, duration: 0.3 }}
                                         >
                                             {link.children.map((child) => (
                                                 <li key={child.href}>
@@ -228,7 +159,6 @@ export function NavigationOverlay({
                                                             'transition-colors duration-200'
                                                         )}
                                                         onClick={onClose}
-                                                        tabIndex={0}
                                                     >
                                                         {child.label}
                                                     </a>
@@ -238,12 +168,14 @@ export function NavigationOverlay({
                                     )}
                                 </motion.li>
                             ))}
-                        </motion.ul>
+                        </ul>
 
                         {/* CTA Button */}
                         <motion.div
                             className="px-6 pb-8 flex justify-center"
-                            variants={linkVariants}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.5, duration: 0.5, ease: 'easeOut' }}
                         >
                             <a
                                 href="/contact"
@@ -265,7 +197,7 @@ export function NavigationOverlay({
                             </a>
                         </motion.div>
                     </motion.nav>
-                </>
+                </div>
             )}
         </AnimatePresence>
     );

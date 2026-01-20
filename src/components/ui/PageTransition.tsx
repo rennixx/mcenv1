@@ -10,9 +10,6 @@ export interface PageTransitionProps {
     mode?: 'fade' | 'slide' | 'scale' | 'slideUp';
 }
 
-// Easing curve as tuple for TypeScript
-const elegantEase = [0.22, 1, 0.36, 1] as const;
-
 export function PageTransition({
     children,
     className,
@@ -28,35 +25,35 @@ export function PageTransition({
                     initial: { opacity: 0 },
                     animate: { opacity: 1 },
                     exit: { opacity: 0 },
-                    transition: { duration: 0.4, ease: elegantEase },
+                    transition: { duration: 0.4, ease: 'easeOut' as const },
                 };
             case 'slide':
                 return {
                     initial: { opacity: 0, x: 20 },
                     animate: { opacity: 1, x: 0 },
                     exit: { opacity: 0, x: -20 },
-                    transition: { duration: 0.5, ease: elegantEase },
+                    transition: { duration: 0.5, ease: 'easeOut' as const },
                 };
             case 'slideUp':
                 return {
                     initial: { opacity: 0, y: 30 },
                     animate: { opacity: 1, y: 0 },
                     exit: { opacity: 0, y: -20 },
-                    transition: { duration: 0.6, ease: elegantEase },
+                    transition: { duration: 0.6, ease: 'easeOut' as const },
                 };
             case 'scale':
                 return {
                     initial: { opacity: 0, scale: 0.98 },
                     animate: { opacity: 1, scale: 1 },
                     exit: { opacity: 0, scale: 0.98 },
-                    transition: { duration: 0.5, ease: elegantEase },
+                    transition: { duration: 0.5, ease: 'easeOut' as const },
                 };
             default:
                 return {
                     initial: { opacity: 0, y: 30 },
                     animate: { opacity: 1, y: 0 },
                     exit: { opacity: 0, y: -20 },
-                    transition: { duration: 0.6, ease: elegantEase },
+                    transition: { duration: 0.6, ease: 'easeOut' as const },
                 };
         }
     };
@@ -119,7 +116,7 @@ export function FadeIn({
             initial={initial}
             whileInView={animate}
             viewport={{ once, amount: threshold }}
-            transition={{ duration, delay, ease: elegantEase }}
+            transition={{ duration, delay, ease: 'easeOut' }}
         >
             {children}
         </motion.div>
@@ -181,7 +178,7 @@ export function StaggerItem({ children, className }: StaggerItemProps) {
                     y: 0,
                     transition: {
                         duration: 0.5,
-                        ease: elegantEase,
+                        ease: 'easeOut',
                     },
                 },
             }}

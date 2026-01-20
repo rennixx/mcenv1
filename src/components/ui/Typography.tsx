@@ -1,20 +1,15 @@
 'use client';
 
 import { forwardRef } from 'react';
-import { motion, type HTMLMotionProps } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import { fadeInUp } from '@/lib/animations';
 
-// Shared typography props
-interface BaseTypographyProps {
+// H1 Component
+export interface H1Props extends React.HTMLAttributes<HTMLHeadingElement> {
+    children: React.ReactNode;
     animate?: boolean;
     gradient?: boolean;
     balance?: boolean;
-}
-
-// H1 Component
-export interface H1Props extends Omit<HTMLMotionProps<'h1'>, 'children'>, BaseTypographyProps {
-    children: React.ReactNode;
 }
 
 const H1 = forwardRef<HTMLHeadingElement, H1Props>(
@@ -24,7 +19,8 @@ const H1 = forwardRef<HTMLHeadingElement, H1Props>(
             'text-4xl sm:text-5xl lg:text-6xl xl:text-7xl',
             'leading-[1.1]',
             'text-primary-950 dark:text-cream-50',
-            gradient && 'bg-gradient-to-r from-accent-500 via-accent-600 to-accent-700 bg-clip-text text-transparent',
+            gradient &&
+            'bg-gradient-to-r from-accent-500 via-accent-600 to-accent-700 bg-clip-text text-transparent',
             balance && 'text-balance',
             className
         );
@@ -34,11 +30,10 @@ const H1 = forwardRef<HTMLHeadingElement, H1Props>(
                 <motion.h1
                     ref={ref}
                     className={classes}
-                    initial="hidden"
-                    whileInView="visible"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-50px' }}
-                    variants={fadeInUp}
-                    {...props}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
                 >
                     {children}
                 </motion.h1>
@@ -46,7 +41,7 @@ const H1 = forwardRef<HTMLHeadingElement, H1Props>(
         }
 
         return (
-            <h1 ref={ref} className={classes} {...(props as React.HTMLAttributes<HTMLHeadingElement>)}>
+            <h1 ref={ref} className={classes} {...props}>
                 {children}
             </h1>
         );
@@ -56,8 +51,11 @@ const H1 = forwardRef<HTMLHeadingElement, H1Props>(
 H1.displayName = 'H1';
 
 // H2 Component
-export interface H2Props extends Omit<HTMLMotionProps<'h2'>, 'children'>, BaseTypographyProps {
+export interface H2Props extends React.HTMLAttributes<HTMLHeadingElement> {
     children: React.ReactNode;
+    animate?: boolean;
+    gradient?: boolean;
+    balance?: boolean;
 }
 
 const H2 = forwardRef<HTMLHeadingElement, H2Props>(
@@ -67,7 +65,8 @@ const H2 = forwardRef<HTMLHeadingElement, H2Props>(
             'text-3xl sm:text-4xl lg:text-5xl',
             'leading-[1.15]',
             'text-primary-950 dark:text-cream-50',
-            gradient && 'bg-gradient-to-r from-accent-500 via-accent-600 to-accent-700 bg-clip-text text-transparent',
+            gradient &&
+            'bg-gradient-to-r from-accent-500 via-accent-600 to-accent-700 bg-clip-text text-transparent',
             balance && 'text-balance',
             className
         );
@@ -77,11 +76,10 @@ const H2 = forwardRef<HTMLHeadingElement, H2Props>(
                 <motion.h2
                     ref={ref}
                     className={classes}
-                    initial="hidden"
-                    whileInView="visible"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-50px' }}
-                    variants={fadeInUp}
-                    {...props}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
                 >
                     {children}
                 </motion.h2>
@@ -89,7 +87,7 @@ const H2 = forwardRef<HTMLHeadingElement, H2Props>(
         }
 
         return (
-            <h2 ref={ref} className={classes} {...(props as React.HTMLAttributes<HTMLHeadingElement>)}>
+            <h2 ref={ref} className={classes} {...props}>
                 {children}
             </h2>
         );
@@ -99,8 +97,11 @@ const H2 = forwardRef<HTMLHeadingElement, H2Props>(
 H2.displayName = 'H2';
 
 // H3 Component
-export interface H3Props extends Omit<HTMLMotionProps<'h3'>, 'children'>, BaseTypographyProps {
+export interface H3Props extends React.HTMLAttributes<HTMLHeadingElement> {
     children: React.ReactNode;
+    animate?: boolean;
+    gradient?: boolean;
+    balance?: boolean;
 }
 
 const H3 = forwardRef<HTMLHeadingElement, H3Props>(
@@ -110,7 +111,8 @@ const H3 = forwardRef<HTMLHeadingElement, H3Props>(
             'text-2xl sm:text-3xl lg:text-4xl',
             'leading-[1.2]',
             'text-primary-950 dark:text-cream-50',
-            gradient && 'bg-gradient-to-r from-accent-500 via-accent-600 to-accent-700 bg-clip-text text-transparent',
+            gradient &&
+            'bg-gradient-to-r from-accent-500 via-accent-600 to-accent-700 bg-clip-text text-transparent',
             balance && 'text-balance',
             className
         );
@@ -120,11 +122,10 @@ const H3 = forwardRef<HTMLHeadingElement, H3Props>(
                 <motion.h3
                     ref={ref}
                     className={classes}
-                    initial="hidden"
-                    whileInView="visible"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-50px' }}
-                    variants={fadeInUp}
-                    {...props}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
                 >
                     {children}
                 </motion.h3>
@@ -132,7 +133,7 @@ const H3 = forwardRef<HTMLHeadingElement, H3Props>(
         }
 
         return (
-            <h3 ref={ref} className={classes} {...(props as React.HTMLAttributes<HTMLHeadingElement>)}>
+            <h3 ref={ref} className={classes} {...props}>
                 {children}
             </h3>
         );
@@ -142,7 +143,7 @@ const H3 = forwardRef<HTMLHeadingElement, H3Props>(
 H3.displayName = 'H3';
 
 // Lead paragraph
-export interface LeadProps extends Omit<HTMLMotionProps<'p'>, 'children'> {
+export interface LeadProps extends React.HTMLAttributes<HTMLParagraphElement> {
     children: React.ReactNode;
     animate?: boolean;
 }
@@ -162,11 +163,10 @@ const Lead = forwardRef<HTMLParagraphElement, LeadProps>(
                 <motion.p
                     ref={ref}
                     className={classes}
-                    initial="hidden"
-                    whileInView="visible"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-50px' }}
-                    variants={fadeInUp}
-                    {...props}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
                 >
                     {children}
                 </motion.p>
@@ -174,7 +174,7 @@ const Lead = forwardRef<HTMLParagraphElement, LeadProps>(
         }
 
         return (
-            <p ref={ref} className={classes} {...(props as React.HTMLAttributes<HTMLParagraphElement>)}>
+            <p ref={ref} className={classes} {...props}>
                 {children}
             </p>
         );
@@ -184,7 +184,7 @@ const Lead = forwardRef<HTMLParagraphElement, LeadProps>(
 Lead.displayName = 'Lead';
 
 // Body text
-export interface TextProps extends Omit<HTMLMotionProps<'p'>, 'children'> {
+export interface TextProps extends React.HTMLAttributes<HTMLParagraphElement> {
     children: React.ReactNode;
     size?: 'sm' | 'base' | 'lg';
     muted?: boolean;
@@ -202,7 +202,9 @@ const Text = forwardRef<HTMLParagraphElement, TextProps>(
         const classes = cn(
             'font-sans leading-relaxed',
             sizeClasses[size],
-            muted ? 'text-neutral-500 dark:text-cream-300/70' : 'text-neutral-700 dark:text-cream-100/90',
+            muted
+                ? 'text-neutral-500 dark:text-cream-300/70'
+                : 'text-neutral-700 dark:text-cream-100/90',
             className
         );
 
@@ -211,11 +213,10 @@ const Text = forwardRef<HTMLParagraphElement, TextProps>(
                 <motion.p
                     ref={ref}
                     className={classes}
-                    initial="hidden"
-                    whileInView="visible"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-50px' }}
-                    variants={fadeInUp}
-                    {...props}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
                 >
                     {children}
                 </motion.p>
@@ -223,7 +224,7 @@ const Text = forwardRef<HTMLParagraphElement, TextProps>(
         }
 
         return (
-            <p ref={ref} className={classes} {...(props as React.HTMLAttributes<HTMLParagraphElement>)}>
+            <p ref={ref} className={classes} {...props}>
                 {children}
             </p>
         );
@@ -233,7 +234,7 @@ const Text = forwardRef<HTMLParagraphElement, TextProps>(
 Text.displayName = 'Text';
 
 // Eyebrow/Label text
-export interface EyebrowProps extends Omit<HTMLMotionProps<'span'>, 'children'> {
+export interface EyebrowProps extends React.HTMLAttributes<HTMLSpanElement> {
     children: React.ReactNode;
     animate?: boolean;
 }
@@ -252,11 +253,10 @@ const Eyebrow = forwardRef<HTMLSpanElement, EyebrowProps>(
                 <motion.span
                     ref={ref}
                     className={classes}
-                    initial="hidden"
-                    whileInView="visible"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: '-50px' }}
-                    variants={fadeInUp}
-                    {...props}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
                 >
                     {children}
                 </motion.span>
@@ -264,7 +264,7 @@ const Eyebrow = forwardRef<HTMLSpanElement, EyebrowProps>(
         }
 
         return (
-            <span ref={ref} className={classes} {...(props as React.HTMLAttributes<HTMLSpanElement>)}>
+            <span ref={ref} className={classes} {...props}>
                 {children}
             </span>
         );
