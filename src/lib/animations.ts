@@ -3,18 +3,18 @@
  * for consistent, elegant animations throughout the site
  */
 
-// Easing curves
+// Easing curves - typed as tuples for Framer Motion compatibility
 export const easings = {
     // Smooth and elegant
-    elegant: [0.22, 1, 0.36, 1],
+    elegant: [0.22, 1, 0.36, 1] as const,
     // Quick start, slow end
-    easeOut: [0, 0, 0.2, 1],
+    easeOut: [0, 0, 0.2, 1] as const,
     // Slow start, quick end
-    easeIn: [0.4, 0, 1, 1],
+    easeIn: [0.4, 0, 1, 1] as const,
     // Smooth both ways
-    easeInOut: [0.4, 0, 0.2, 1],
+    easeInOut: [0.4, 0, 0.2, 1] as const,
     // Bouncy
-    bounce: [0.68, -0.55, 0.265, 1.55],
+    bounce: [0.68, -0.55, 0.265, 1.55] as const,
 } as const;
 
 // Duration presets
@@ -232,29 +232,6 @@ export const imageReveal = {
         transition: {
             duration: durations.hero,
             ease: easings.elegant,
-        },
-    },
-};
-
-// Slide overlay (for image hover effects)
-export const slideOverlay = {
-    hidden: {
-        scaleY: 0,
-        originY: 0,
-    },
-    visible: {
-        scaleY: 1,
-        transition: {
-            duration: durations.normal,
-            ease: easings.easeOut,
-        },
-    },
-    exit: {
-        scaleY: 0,
-        originY: 1,
-        transition: {
-            duration: durations.normal,
-            ease: easings.easeIn,
         },
     },
 };

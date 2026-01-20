@@ -115,14 +115,14 @@ export function NavigationOverlay({
     return (
         <AnimatePresence>
             {isOpen && (
-                <div key="navigation-overlay">
+                <>
                     {/* Backdrop */}
                     <motion.div
                         className="fixed inset-0 z-40 bg-primary-950/60 backdrop-blur-sm"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        variants={overlayVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
                         onClick={onClose}
                         aria-hidden="true"
                     />

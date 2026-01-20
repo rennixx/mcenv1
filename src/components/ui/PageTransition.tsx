@@ -10,83 +10,8 @@ export interface PageTransitionProps {
     mode?: 'fade' | 'slide' | 'scale' | 'slideUp';
 }
 
-// Animation variants for different transition modes
-const transitionVariants = {
-    fade: {
-        initial: { opacity: 0 },
-        animate: {
-            opacity: 1,
-            transition: {
-                duration: 0.4,
-                ease: [0.22, 1, 0.36, 1],
-            },
-        },
-        exit: {
-            opacity: 0,
-            transition: {
-                duration: 0.3,
-                ease: [0.22, 1, 0.36, 1],
-            },
-        },
-    },
-    slide: {
-        initial: { opacity: 0, x: 20 },
-        animate: {
-            opacity: 1,
-            x: 0,
-            transition: {
-                duration: 0.5,
-                ease: [0.22, 1, 0.36, 1],
-            },
-        },
-        exit: {
-            opacity: 0,
-            x: -20,
-            transition: {
-                duration: 0.3,
-                ease: [0.22, 1, 0.36, 1],
-            },
-        },
-    },
-    slideUp: {
-        initial: { opacity: 0, y: 30 },
-        animate: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.6,
-                ease: [0.22, 1, 0.36, 1],
-            },
-        },
-        exit: {
-            opacity: 0,
-            y: -20,
-            transition: {
-                duration: 0.3,
-                ease: [0.22, 1, 0.36, 1],
-            },
-        },
-    },
-    scale: {
-        initial: { opacity: 0, scale: 0.98 },
-        animate: {
-            opacity: 1,
-            scale: 1,
-            transition: {
-                duration: 0.5,
-                ease: [0.22, 1, 0.36, 1],
-            },
-        },
-        exit: {
-            opacity: 0,
-            scale: 0.98,
-            transition: {
-                duration: 0.3,
-                ease: [0.22, 1, 0.36, 1],
-            },
-        },
-    },
-};
+// Easing curve as tuple for TypeScript
+const elegantEase = [0.22, 1, 0.36, 1] as const;
 
 export function PageTransition({
     children,
@@ -94,18 +19,53 @@ export function PageTransition({
     mode = 'slideUp',
 }: PageTransitionProps) {
     const pathname = usePathname();
-    const variants = transitionVariants[mode];
+
+    // Define animation values based on mode
+    const getAnimationProps = () => {
+        switch (mode) {
+            case 'fade':
+                return {
+                    initial: { opacity: 0 },
+                    animate: { opacity: 1 },
+                    exit: { opacity: 0 },
+                    transition: { duration: 0.4, ease: elegantEase },
+                };
+            case 'slide':
+                return {
+                    initial: { opacity: 0, x: 20 },
+                    animate: { opacity: 1, x: 0 },
+                    exit: { opacity: 0, x: -20 },
+                    transition: { duration: 0.5, ease: elegantEase },
+                };
+            case 'slideUp':
+                return {
+                    initial: { opacity: 0, y: 30 },
+                    animate: { opacity: 1, y: 0 },
+                    exit: { opacity: 0, y: -20 },
+                    transition: { duration: 0.6, ease: elegantEase },
+                };
+            case 'scale':
+                return {
+                    initial: { opacity: 0, scale: 0.98 },
+                    animate: { opacity: 1, scale: 1 },
+                    exit: { opacity: 0, scale: 0.98 },
+                    transition: { duration: 0.5, ease: elegantEase },
+                };
+            default:
+                return {
+                    initial: { opacity: 0, y: 30 },
+                    animate: { opacity: 1, y: 0 },
+                    exit: { opacity: 0, y: -20 },
+                    transition: { duration: 0.6, ease: elegantEase },
+                };
+        }
+    };
+
+    const animationProps = getAnimationProps();
 
     return (
         <AnimatePresence mode="wait">
-            <motion.div
-                key={pathname}
-                className={cn('w-full', className)}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                variants={variants}
-            >
+            <motion.div key={pathname} className={cn('w-full', className)} {...animationProps}>
                 {children}
             </motion.div>
         </AnimatePresence>
@@ -151,11 +111,6 @@ export function FadeIn({
         opacity: 1,
         x: 0,
         y: 0,
-        transition: {
-            duration,
-            delay,
-            ease: [0.22, 1, 0.36, 1],
-        },
     };
 
     return (
@@ -164,6 +119,7 @@ export function FadeIn({
             initial={initial}
             whileInView={animate}
             viewport={{ once, amount: threshold }}
+            transition={{ duration, delay, ease: elegantEase }}
         >
             {children}
         </motion.div>
@@ -225,7 +181,7 @@ export function StaggerItem({ children, className }: StaggerItemProps) {
                     y: 0,
                     transition: {
                         duration: 0.5,
-                        ease: [0.22, 1, 0.36, 1],
+                        ease: elegantEase,
                     },
                 },
             }}
